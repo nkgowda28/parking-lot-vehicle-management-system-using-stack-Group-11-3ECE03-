@@ -1,0 +1,80 @@
+
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> parkingLot;
+    int choice;
+    string vehicle;
+
+    do {
+        cout << "\n===== PARKING LOT VEHICLE MANAGEMENT =====\n";
+        cout << "1. Park a Vehicle\n";
+        cout << "2. Remove Last Parked Vehicle\n";
+        cout << "3. Display Top Vehicle\n";
+        cout << "4. Display All Vehicles\n";
+        cout << "5. Check Number of Vehicles\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter vehicle number: ";
+                cin >> vehicle;
+                parkingLot.push(vehicle);
+                cout << "Vehicle parked successfully!\n";
+                break;
+
+            case 2:
+                if (parkingLot.empty()) {
+                    cout << "Parking lot is empty!\n";
+                } else {
+                    cout << "Vehicle removed: "
+                         << parkingLot.top() << endl;
+                    parkingLot.pop();
+                }
+                break;
+
+            case 3:
+                if (parkingLot.empty()) {
+                    cout << "No vehicles parked.\n";
+                } else {
+                    cout << "Top vehicle: "
+                         << parkingLot.top() << endl;
+                }
+                break;
+
+            case 4:
+                if (parkingLot.empty()) {
+                    cout << "Parking lot is empty!\n";
+                } else {
+                    stack<string> temp = parkingLot;
+                    cout << "Vehicles (top to bottom):\n";
+
+                    while (!temp.empty()) {
+                        cout << temp.top() << endl;
+                        temp.pop();
+                    }
+                }
+                break;
+
+            case 5:
+                cout << "Total vehicles parked: "
+                     << parkingLot.size() << endl;
+                break;
+
+            case 6:
+                cout << "Exiting Parking Lot System...\n";
+                break;
+
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
